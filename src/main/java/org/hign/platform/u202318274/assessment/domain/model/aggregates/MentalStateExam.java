@@ -25,7 +25,6 @@ public class MentalStateExam extends AuditableAbstractAggregateRoot<MentalStateE
 
     @Embedded
     @NotNull
-    @Column
     private ExaminerNationalProviderIdentifier examinerNationalProviderIdentifier;
 
     @Column

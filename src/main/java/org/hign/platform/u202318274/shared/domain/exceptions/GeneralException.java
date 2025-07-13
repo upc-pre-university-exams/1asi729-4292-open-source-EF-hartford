@@ -1,5 +1,6 @@
 package org.hign.platform.u202318274.shared.domain.exceptions;
 
+
 public class GeneralException extends RuntimeException{
     private final String code;
 

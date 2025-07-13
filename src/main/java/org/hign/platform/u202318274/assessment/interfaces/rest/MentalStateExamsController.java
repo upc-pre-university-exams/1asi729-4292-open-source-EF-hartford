@@ -14,6 +14,7 @@ import org.hign.platform.u202318274.assessment.interfaces.rest.transform.MentalS
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,10 +33,10 @@ public class MentalStateExamsController {
     @PostMapping
     @Operation(summary = "Create a new MentalStateExam", description = "Create a new MentalStateExam")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Student created"),
+            @ApiResponse(responseCode = "201", description = "Mental State Exam created"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
-            @ApiResponse(responseCode = "404", description = "Student not found")})
-    public ResponseEntity<MentalStateExamResource> createMentalStateExam(CreateMentalStateExamResource resource) {
+            @ApiResponse(responseCode = "404", description = "Mental State Exam not found")})
+    public ResponseEntity<MentalStateExamResource> createMentalStateExam(@RequestBody CreateMentalStateExamResource resource) {
         var createMentalStateExamCommand = CreateMentalStateExamCommandFromResourceAssembler.toCommandFromResource(resource);
 
         var mentalStateExam = mentalStateCommandService.handle(createMentalStateExamCommand);

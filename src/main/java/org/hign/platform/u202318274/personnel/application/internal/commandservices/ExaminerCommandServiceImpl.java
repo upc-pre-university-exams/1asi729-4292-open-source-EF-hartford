@@ -21,10 +21,10 @@ public class ExaminerCommandServiceImpl implements ExaminerCommandService {
 
     @Override
     public Optional<Examiner> handle(CreateExaminerCommand command) {
-        if (command.firstName() == null || command.firstName().isBlank())
+        if (command.firstName() == null || command.firstName().isBlank() || command.firstName().isEmpty())
             throw new GeneralException("First name cannot be null or blank", "FIRST_NAME_INVALID");
 
-        if (command.lastName() == null || command.lastName().isBlank())
+        if (command.lastName() == null || command.lastName().isBlank() || command.lastName().isEmpty())
             throw new GeneralException("Last name cannot be null or blank", "LAST_NAME_INVALID");
 
         // Validate National Provider Identifier

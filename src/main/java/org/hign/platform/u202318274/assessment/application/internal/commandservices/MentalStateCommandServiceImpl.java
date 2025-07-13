@@ -31,7 +31,7 @@ public class MentalStateCommandServiceImpl implements MentalStateCommandService 
             throw new GeneralException("Exam Date cannot be null or in the future", "INVALID_EXAM_DATE");
 
         if (command.orientationScore() == null || command.orientationScore() < 0 || command.orientationScore() > 10)
-            throw new GeneralException("Orientation Score must be between 0 and 5", "INVALID_ORIENTATION_SCORE");
+            throw new GeneralException("Orientation Score must be between 0 and 10", "INVALID_ORIENTATION_SCORE");
 
         if (command.registrationScore() == null || command.registrationScore() < 0 || command.registrationScore() > 3)
             throw new GeneralException("Registration Score must be between 0 and 5", "INVALID_REGISTRATION_SCORE");
@@ -40,10 +40,10 @@ public class MentalStateCommandServiceImpl implements MentalStateCommandService 
             throw new GeneralException("Attention and Calculation Score must be between 0 and 5", "INVALID_ATTENTION_CALCULATION_SCORE");
 
         if (command.recallScore() == null || command.recallScore() < 0 || command.recallScore() > 3)
-            throw new GeneralException("Recall Score must be between 0 and 5", "INVALID_RECALL_SCORE");
+            throw new GeneralException("Recall Score must be between 0 and 3", "INVALID_RECALL_SCORE");
 
         if (command.languageScore() == null || command.languageScore() < 0 || command.languageScore() > 9)
-            throw new GeneralException("Language Score must be between 0 and 5", "INVALID_LANGUAGE_SCORE");
+            throw new GeneralException("Language Score must be between 0 and 9", "INVALID_LANGUAGE_SCORE");
 
         // Validate examiner's National Provider Identifier with ACL
         var personnelServiceQuery= externalPersonnelService.fetchExaminerByNationalProviderIdentifier(command.examinerNationalProviderIdentifier());

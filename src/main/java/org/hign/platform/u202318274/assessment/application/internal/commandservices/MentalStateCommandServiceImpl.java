@@ -1,5 +1,6 @@
 package org.hign.platform.u202318274.assessment.application.internal.commandservices;
 
+import org.hign.platform.u202318274.assessment.application.internal.outboundservices.acl.ExternalPersonnelService;
 import org.hign.platform.u202318274.assessment.domain.model.aggregates.MentalStateExam;
 import org.hign.platform.u202318274.assessment.domain.model.commands.CreateMentalStateCommand;
 import org.hign.platform.u202318274.assessment.domain.services.MentalStateCommandService;
@@ -13,9 +14,11 @@ import java.util.Optional;
 public class MentalStateCommandServiceImpl implements MentalStateCommandService {
 
     private final MentalStateRepository mentalStateRepository;
+    private final ExternalPersonnelService externalPersonnelService;
 
-    public MentalStateCommandServiceImpl(MentalStateRepository mentalStateRepository) {
+    public MentalStateCommandServiceImpl(MentalStateRepository mentalStateRepository, ExternalPersonnelService externalPersonnelService) {
         this.mentalStateRepository = mentalStateRepository;
+        this.externalPersonnelService = externalPersonnelService;
     }
 
     @Override
@@ -43,7 +46,11 @@ public class MentalStateCommandServiceImpl implements MentalStateCommandService 
             throw new GeneralException("Language Score must be between 0 and 5", "INVALID_LANGUAGE_SCORE");
 
         // Validate examiner's National Provider Identifier with ACL
-
+        var personnelServiceQuery= externalPersonnelService.fetchExaminerByNationalProviderIdentifier(command.examinerNationalProviderIdentifier());
+        if (personnelServiceQuery.isEmpty()) {
+            throw new GeneralException("Examiner not found with National Provider Identifier: " + command.examinerNationalProviderIdentifier(),
+                    "EXAMINER_NOT_FOUND");
+        }
 
 
         // Create the MentalStateExam entity

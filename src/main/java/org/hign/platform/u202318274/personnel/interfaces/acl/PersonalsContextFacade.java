@@ -4,12 +4,6 @@ import java.util.UUID;
 
 public interface PersonalsContextFacade {
 
-    Long createExaminer(
-            String firstName,
-            String lastName,
-            UUID nationalProviderIdentifier
-    );
-
     Long fetchExaminerByNationalProviderIdentifier(
             UUID nationalProviderIdentifier
     );

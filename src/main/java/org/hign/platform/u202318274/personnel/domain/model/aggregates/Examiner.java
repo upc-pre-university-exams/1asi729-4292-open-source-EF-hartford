@@ -6,8 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hign.platform.u202318274.personnel.domain.model.commands.CreateExaminerCommand;
-import org.hign.platform.u202318274.personnel.domain.model.valueobjects.NationalProviderId;
+import org.hign.platform.u202318274.personnel.domain.model.valueobjects.NationalProviderIdentifier;
 import org.hign.platform.u202318274.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -28,15 +30,15 @@ public class Examiner extends AuditableAbstractAggregateRoot<Examiner> {
 
     @Embedded
     @NotNull
-    private NationalProviderId nationalProviderIdentifier;
+    private NationalProviderIdentifier nationalProviderIdentifier;
 
     public Examiner() {
     }
 
-    public Examiner(CreateExaminerCommand command) {
+    public Examiner(CreateExaminerCommand command, NationalProviderIdentifier nationalProviderIdentifier) {
         this.firstName = command.firstName();
         this.lastName = command.lastName();
-        this.nationalProviderIdentifier = new NationalProviderId(command.nationalProviderIdentifier());
+        this.nationalProviderIdentifier = nationalProviderIdentifier != null ? nationalProviderIdentifier : new NationalProviderIdentifier();
     }
 
 }

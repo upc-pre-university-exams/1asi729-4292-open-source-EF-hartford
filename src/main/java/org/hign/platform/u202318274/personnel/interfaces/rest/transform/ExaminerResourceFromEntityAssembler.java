@@ -9,7 +9,7 @@ public class ExaminerResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getFirstName(),
                 entity.getLastName(),
-                entity.getNationalProviderIdentifier().getIdentifier()
+                entity.getNationalProviderIdentifier().value()
         );
     }
 }

@@ -8,11 +8,27 @@ import java.util.UUID;
 public record ExaminerNationalProviderIdentifier(UUID examinerNationalProviderIdentifier) {
     public ExaminerNationalProviderIdentifier {
         if (examinerNationalProviderIdentifier == null) {
-            throw new IllegalArgumentException("Examiner National Provider Identifier cannot be null");
+            throw new IllegalArgumentException("National Provider Identifier cannot be null");
         }
         if (examinerNationalProviderIdentifier.toString().isEmpty()) {
-            throw new IllegalArgumentException("Examiner National Provider Identifier cannot be empty");
+            throw new IllegalArgumentException("National Provider Identifier cannot be empty");
         }
+    }
+
+    public ExaminerNationalProviderIdentifier() {
+        this(UUID.randomUUID());
+    }
+
+    public String getIdentifier() {
+        return examinerNationalProviderIdentifier.toString();
+    }
+
+    public ExaminerNationalProviderIdentifier(String value) {
+        this(UUID.fromString(value));
+    }
+
+    public UUID value() {
+        return examinerNationalProviderIdentifier;
     }
 
 }

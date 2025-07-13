@@ -1,5 +1,7 @@
 package org.hign.platform.u202318274.assessment.domain.model.aggregates;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -29,7 +31,8 @@ public class MentalStateExam extends AuditableAbstractAggregateRoot<MentalStateE
 
     @Column
     @NotNull
-    private Date examDate;
+    @Temporal(TemporalType.DATE)
+    Date examDate;
 
     @Column
     @NotNull

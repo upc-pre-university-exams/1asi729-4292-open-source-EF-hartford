@@ -10,8 +10,8 @@ public class MentalStateExamFromEntityAssembler {
         return new MentalStateExamResource(
                 entity.getId(),
                 entity.getPatientId(),
-                entity.getExaminerNationalProviderIdentifier().toString(),
-                entity.getExamDate().toString(),
+                entity.getExaminerNationalProviderIdentifier().value(),
+                entity.getExamDate(),
                 entity.getOrientationScore(),
                 entity.getRegistrationScore(),
                 entity.getAttentionAndCalculationScore(),

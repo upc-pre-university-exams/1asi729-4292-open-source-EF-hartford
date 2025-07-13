@@ -44,7 +44,6 @@ public class MentalStateExamsController {
         if (mentalStateExam.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-
         var mentalStateExamResource = MentalStateExamFromEntityAssembler.toResourceFromEntity(mentalStateExam.get());
 
         return new ResponseEntity<>(mentalStateExamResource, HttpStatus.CREATED);

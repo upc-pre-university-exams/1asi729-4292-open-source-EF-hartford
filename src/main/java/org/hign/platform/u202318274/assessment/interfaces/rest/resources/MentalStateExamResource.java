@@ -10,12 +10,7 @@ public record MentalStateExamResource(
         Long Id,
         Long patientId,
         UUID examinerNationalProviderIdentifier,
-
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        @Schema(example = "YYYY-MM-DD")
         Date examDate,
-
-
         Integer orientationScore,
         Integer registrationScore,
         Integer attentionAndCalculationScore,

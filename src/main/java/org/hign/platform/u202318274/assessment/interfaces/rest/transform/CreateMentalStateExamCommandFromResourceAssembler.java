@@ -10,18 +10,9 @@ import java.util.Date;
 
 public class CreateMentalStateExamCommandFromResourceAssembler {
     public static CreateMentalStateCommand toCommandFromResource(CreateMentalStateExamResource resource) {
-        Date parsedDate;
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            sdf.setLenient(false);
-            parsedDate = sdf.parse(resource.examDate());
-        } catch (ParseException e) {
-            throw new GeneralException("Invalid date format. Expected yyyy-MM-dd", "INVALID_DATE_FORMAT");
-        }
-
         return new CreateMentalStateCommand(
                 resource.patientId(),
-                parsedDate,
+                resource.examDate(),
                 resource.examinerNationalProviderId(),
                 resource.orientationScore(),
                 resource.registrationScore(),

@@ -7,9 +7,7 @@ import java.util.UUID;
 
 public record CreateMentalStateCommand(
         Long patientId,
-
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        Date examDate,
+        String examDate,
         UUID examinerNationalProviderIdentifier,
         Integer orientationScore,
         Integer registrationScore,

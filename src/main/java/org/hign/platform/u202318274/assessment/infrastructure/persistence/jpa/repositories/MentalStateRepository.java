@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface MentalStateRepository extends JpaRepository<MentalStateExam,Long> {
-    Optional<MentalStateExam> findByNationalProviderIdentifier(ExaminerNationalProviderIdentifier nationalProviderRecordId);
+public interface MentalStateRepository extends JpaRepository<MentalStateExam, Long> {
+    Optional<MentalStateExam> findByExaminerNationalProviderIdentifier(ExaminerNationalProviderIdentifier examinerNationalProviderIdentifier);
 
-    boolean existsByNationalProviderIdentifier(UUID providerRecordId);
+    boolean existsByExaminerNationalProviderIdentifier(ExaminerNationalProviderIdentifier examinerNationalProviderIdentifier);
 }

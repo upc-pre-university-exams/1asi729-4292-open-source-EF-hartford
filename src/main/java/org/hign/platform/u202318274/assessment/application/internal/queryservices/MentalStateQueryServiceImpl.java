@@ -19,6 +19,6 @@ public class MentalStateQueryServiceImpl implements MentalStateQueryService {
 
     @Override
     public Optional<MentalStateExam> handle(GetMentalStateExamByExaminerNationalProviderIdentifierQuery query) {
-        return mentalStateRepository.findByNationalProviderIdentifier(query.examinerNationalProviderIdentifier());
+        return mentalStateRepository.findByExaminerNationalProviderIdentifier(query.examinerNationalProviderIdentifier());
     }
 }

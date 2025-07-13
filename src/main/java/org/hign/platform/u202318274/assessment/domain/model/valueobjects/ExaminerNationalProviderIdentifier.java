@@ -7,11 +7,12 @@ import java.util.UUID;
 @Embeddable
 public record ExaminerNationalProviderIdentifier(UUID examinerNationalProviderIdentifier) {
     public ExaminerNationalProviderIdentifier {
-       if ( examinerNationalProviderIdentifier == null) {
+        if (examinerNationalProviderIdentifier == null) {
             throw new IllegalArgumentException("Examiner National Provider Identifier cannot be null");
         }
         if (examinerNationalProviderIdentifier.toString().isEmpty()) {
             throw new IllegalArgumentException("Examiner National Provider Identifier cannot be empty");
         }
     }
+
 }

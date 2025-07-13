@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.hign.platform.u202318274.personnel.domain.services.ExaminerCommandService;
-import org.hign.platform.u202318274.personnel.domain.services.ExaminerQueryService;
 import org.hign.platform.u202318274.personnel.interfaces.rest.resources.CreateExaminerResource;
 import org.hign.platform.u202318274.personnel.interfaces.rest.resources.ExaminerResource;
 import org.hign.platform.u202318274.personnel.interfaces.rest.transform.CreateExaminerCommandFromResourceAssembler;
@@ -22,10 +21,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping(value = "/api/v1/examiners", produces = APPLICATION_JSON_VALUE)
 @Tag(name = "Examiners", description = "Available Examiners Endpoints")
-public class ExaminerController {
+public class ExaminersController {
     private final ExaminerCommandService examinerCommandService;
 
-    public ExaminerController(ExaminerCommandService examinerCommandService) {
+    public ExaminersController(ExaminerCommandService examinerCommandService) {
         this.examinerCommandService = examinerCommandService;
     }
 

@@ -16,10 +16,9 @@ public class ExternalPersonnelService {
     }
 
     // Mnemothechnic: Choose the foreign key
-    public Optional<ExaminerNationalProviderIdentifier> fetchExaminerByNationalProviderIdentifier(UUID nationalProviderIdentifier){
-        // Fetch examiner by national provider identifier from the external service
-        var examiner = personalsContextFacade.fetchExaminerByNationalProviderIdentifier(nationalProviderIdentifier);
-        return examiner == 0L ? Optional.empty() : Optional.of(new ExaminerNationalProviderIdentifier(nationalProviderIdentifier));
+    public Optional<ExaminerNationalProviderIdentifier> fetchExaminerByNationalProviderIdentifier(UUID nationalProviderIdentifier) {
+        var examinerNationalProviderIdentifier = personalsContextFacade.fetchExaminerByNationalProviderIdentifier(nationalProviderIdentifier);
+        return examinerNationalProviderIdentifier == 0L ? Optional.empty() : Optional.of(new ExaminerNationalProviderIdentifier(nationalProviderIdentifier));
 
     }
 

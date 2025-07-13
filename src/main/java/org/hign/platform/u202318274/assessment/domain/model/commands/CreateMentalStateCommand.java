@@ -35,8 +35,5 @@ public record CreateMentalStateCommand(
         if (languageScore == null || languageScore < 0) {
             throw new IllegalArgumentException("Language score must not be null and must be a non-negative number.");
         }
-        if (examinerNationalProviderIdentifier == null) {
-            throw new IllegalArgumentException("Examiner National Provider Identifier must not be null.");
-        }
     }
 }

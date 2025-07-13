@@ -1,15 +1,16 @@
 package org.hign.platform.u202318274.assessment.application.internal.commandservices;
 
 import org.hign.platform.u202318274.assessment.domain.model.aggregates.MentalStateExam;
-import org.hign.platform.u202318274.assessment.domain.model.commands.CreateMentalExamCommand;
-import org.hign.platform.u202318274.assessment.domain.services.MentalStateExamCommandService;
+import org.hign.platform.u202318274.assessment.domain.model.commands.CreateMentalStateCommand;
+import org.hign.platform.u202318274.assessment.domain.services.MentalStateCommandService;
 import org.hign.platform.u202318274.assessment.infrastructure.persistence.jpa.repositories.MentalStateRepository;
-import org.hign.platform.u202318274.personnel.domain.model.aggregates.Examiner;
 import org.hign.platform.u202318274.shared.domain.exceptions.GeneralException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class MentalStateCommandServiceImpl implements MentalStateExamCommandService {
+public class MentalStateCommandServiceImpl implements MentalStateCommandService {
 
     private final MentalStateRepository mentalStateRepository;
 
@@ -18,13 +19,10 @@ public class MentalStateCommandServiceImpl implements MentalStateExamCommandServ
     }
 
     @Override
-    public Long handle(CreateMentalExamCommand command) {
+    public Optional<MentalStateExam> handle(CreateMentalStateCommand command) {
         // General validations
         if (command.patientId() == null || command.patientId() <= 0)
             throw new GeneralException("Invalid Patient Id", "INVALID_PATIENT_ID");
-
-        if (command.examinerNationalProviderIdentifier() == null)
-            throw new GeneralException("Examiner National Provider Identifier cannot be null or empty", "INVALID_EXAMINER_IDENTIFIER");
 
         if (command.examDate() == null || command.examDate().after(new java.util.Date()))
             throw new GeneralException("Exam Date cannot be null or in the future", "INVALID_EXAM_DATE");
@@ -46,11 +44,12 @@ public class MentalStateCommandServiceImpl implements MentalStateExamCommandServ
 
         // Validate examiner's National Provider Identifier with ACL
 
+
+
         // Create the MentalStateExam entity
         var mentalStateExam = new MentalStateExam(command);
         mentalStateRepository.save(mentalStateExam);
-        return mentalStateExam.getId();
-
+        return Optional.of(mentalStateExam);
     }
 
 

@@ -5,8 +5,8 @@ import jakarta.persistence.Embeddable;
 import java.util.UUID;
 
 @Embeddable
-public record NationalProviderRecordId(UUID nationalProviderRecordIdentifier) {
-    public NationalProviderRecordId {
+public record NationalProviderId(UUID nationalProviderRecordIdentifier) {
+    public NationalProviderId {
         if (nationalProviderRecordIdentifier == null || nationalProviderRecordIdentifier.toString().isBlank()) {
             throw new IllegalArgumentException("National Provider Record Identifier cannot be null");
         }

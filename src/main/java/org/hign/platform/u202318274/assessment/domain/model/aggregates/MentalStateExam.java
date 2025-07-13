@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.hign.platform.u202318274.assessment.domain.model.commands.CreateMentalExamCommand;
-import org.hign.platform.u202318274.assessment.domain.model.valueobjects.ExaminerNationalProviderRecordId;
+import org.hign.platform.u202318274.assessment.domain.model.commands.CreateMentalStateCommand;
+import org.hign.platform.u202318274.assessment.domain.model.valueobjects.ExaminerNationalProviderIdentifier;
 import org.hign.platform.u202318274.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.util.Date;
 
@@ -27,7 +26,7 @@ public class MentalStateExam extends AuditableAbstractAggregateRoot<MentalStateE
     @Embedded
     @NotNull
     @Column
-    private ExaminerNationalProviderRecordId examinerNationalProviderIdentifier;
+    private ExaminerNationalProviderIdentifier examinerNationalProviderIdentifier;
 
     @Column
     @NotNull
@@ -58,9 +57,9 @@ public class MentalStateExam extends AuditableAbstractAggregateRoot<MentalStateE
     public MentalStateExam() {
     }
 
-    public MentalStateExam(CreateMentalExamCommand command) {
+    public MentalStateExam(CreateMentalStateCommand command) {
         this.patientId = command.patientId();
-        this.examinerNationalProviderIdentifier = new ExaminerNationalProviderRecordId(command.examinerNationalProviderIdentifier());
+        this.examinerNationalProviderIdentifier = new ExaminerNationalProviderIdentifier(command.examinerNationalProviderIdentifier());
         this.examDate = command.examDate();
         this.orientationScore = command.orientationScore();
         this.registrationScore = command.registrationScore();
